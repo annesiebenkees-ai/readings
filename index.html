@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Design Reading — Anne Siebenkees</title>
+<meta name="description" content="Dein persönliches Human Design Reading — eine tiefe, individuelle Landkarte deiner Energie. 50+ Seiten, von Hand für dich erstellt.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
+:root{
+  --warmweiss:#faf6f0; --creme:#efe2cc; --creme2:#f3e6d2; --gelb:#ffb627; --tomate:#ff4a3d;
+  --tinte:#2e2723; --leise:#6f625a; --linie:#e6d9c5; --weiss:#fffdf9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{ font-family:'Instrument Sans',system-ui,sans-serif; color:var(--tinte); background:var(--warmweiss); line-height:1.65; font-size:16.5px; }
+h1,h2,h3,h4{ font-family:'Instrument Serif',Georgia,serif; font-weight:400; letter-spacing:-.01em; line-height:1.08; color:var(--tinte); }
+em,.script{ font-family:'Instrument Serif',Georgia,serif; font-style:italic; color:var(--tomate); }
+.wrap{ max-width:1080px; margin:0 auto; padding:0 20px; }
+.narrow{ max-width:760px; margin:0 auto; }
+strong{ font-weight:600; color:var(--tinte); }
+a{ color:inherit; }
+/* Kopf */
+header{ position:sticky; top:0; z-index:50; background:rgba(250,246,240,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--linie); }
+.hd{ display:flex; align-items:center; justify-content:space-between; height:62px; }
+.logo{ font-family:'Instrument Serif',serif; font-size:23px; }
+.logo span{ color:var(--tomate); }
+.btn{ display:inline-block; background:var(--gelb); color:var(--tinte); padding:13px 26px; border-radius:40px; text-decoration:none; font-weight:600; font-size:15px; transition:transform .15s; border:none; cursor:pointer; }
+.btn:hover{ transform:translateY(-2px); }
+.btn.outline{ background:transparent; color:var(--tinte); border:1.5px solid var(--tinte); }
+.btn.outline:hover{ background:var(--creme2); }
+.hd .btn{ padding:9px 18px; font-size:14px; }
+.hd-cta{ display:none; }
+@media(min-width:680px){ .hd-cta{ display:inline-block; } }
+/* Hero */
+.hero{ position:relative; overflow:hidden; text-align:center; padding:70px 0 80px; background:var(--warmweiss) url(assets/streifen-creme.svg) center/cover no-repeat; }
+.hero::after{ content:""; position:absolute; left:50%; bottom:-180px; width:560px; height:360px; transform:translateX(-50%); background:radial-gradient(closest-side, rgba(255,182,39,.45), rgba(255,74,61,.18) 55%, transparent); filter:blur(10px); pointer-events:none; }
+.hero .wrap{ position:relative; z-index:1; background:rgba(250,246,240,.9); border-radius:18px; padding:36px 22px 32px; max-width:720px; }
+.hero .orn{ display:none; }
+.hero .eyebrow{ text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; font-weight:600; color:var(--leise); margin-bottom:18px; }
+.hero h1{ font-size:46px; margin-bottom:8px; }
+.hero h1 .script{ font-size:inherit; }
+.schlaufe{ display:block; width:220px; height:auto; margin:4px auto 18px; }
+.hero p.sub{ font-size:18px; color:var(--leise); max-width:30em; margin:0 auto 28px; }
+.hero .btn{ font-size:16px; padding:16px 34px; }
+.hero .micro{ margin-top:16px; font-size:13px; color:var(--leise); }
+@media(min-width:680px){ .hero h1{ font-size:68px; } }
+/* Abschnitte */
+.pad{ padding:76px 0; }
+.sec-sand{ background:var(--creme2); }
+.eyebrow2{ text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; font-weight:600; color:var(--leise); text-align:center; margin-bottom:12px; }
+h2.sec{ text-align:center; font-size:36px; margin-bottom:14px; }
+@media(min-width:680px){ h2.sec{ font-size:50px; } }
+.lead{ text-align:center; color:var(--leise); font-size:18px; max-width:34em; margin:0 auto 40px; }
+.pain-grid{ display:grid; gap:14px; grid-template-columns:1fr; max-width:680px; margin:0 auto; }
+@media(min-width:680px){ .pain-grid{ grid-template-columns:1fr 1fr; } }
+.pain{ background:var(--weiss); border-radius:14px; padding:20px 22px; font-family:'Instrument Serif',serif; font-size:21px; line-height:1.3; }
+.pain::before{ content:'„'; color:var(--tomate); }
+.turn{ text-align:center; margin-top:40px; font-family:'Instrument Serif',serif; font-size:28px; }
+.two{ display:grid; gap:40px; grid-template-columns:1fr; align-items:center; }
+@media(min-width:820px){ .two{ grid-template-columns:1fr 1fr; gap:60px; } }
+.two h2{ font-size:38px; margin-bottom:16px; }
+.two p{ margin-bottom:14px; }
+.inside-grid{ display:grid; gap:20px 30px; grid-template-columns:1fr; max-width:840px; margin:0 auto; }
+@media(min-width:680px){ .inside-grid{ grid-template-columns:1fr 1fr; } }
+.feat{ display:flex; gap:14px; align-items:flex-start; }
+.feat .ic{ flex:none; width:10px; height:10px; border-radius:50%; background:var(--gelb); margin-top:9px; font-size:0; }
+.feat h4{ font-size:22px; margin-bottom:2px; }
+.feat p{ font-size:15px; color:var(--leise); }
+/* Pakete */
+.pkgs{ display:grid; gap:22px; grid-template-columns:1fr; max-width:1000px; margin:0 auto; }
+@media(min-width:820px){ .pkgs{ grid-template-columns:repeat(3,1fr); } }
+.pkg{ background:var(--weiss); border-radius:16px; padding:30px 26px; display:flex; flex-direction:column; position:relative; }
+.pkg.feature{ border:2px solid var(--tomate); }
+.pkg .tag{ position:absolute; top:-13px; left:26px; background:var(--gelb); color:var(--tinte); font-size:11px; letter-spacing:.14em; text-transform:uppercase; padding:5px 12px; border-radius:20px; font-weight:600; }
+.pkg h3{ font-size:30px; margin-bottom:2px; }
+.pkg .ptag{ font-size:14px; color:var(--leise); margin-bottom:16px; }
+.pkg .price{ font-family:'Instrument Serif',serif; font-size:46px; line-height:1; margin-bottom:6px; }
+.pkg .pages{ font-size:12px; color:var(--leise); font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:20px; }
+.pkg ul{ list-style:none; margin-bottom:24px; }
+.pkg li{ position:relative; padding-left:20px; margin-bottom:9px; font-size:15px; }
+.pkg li::before{ content:''; position:absolute; left:0; top:9px; width:8px; height:8px; border-radius:50%; background:var(--gelb); }
+.pkg .btn{ margin-top:auto; text-align:center; }
+.pkgs.klein{ margin-top:22px; }
+.pkg.mini{ padding:22px; }
+.pkg.mini h3{ font-size:25px; }
+.pkg.mini .price{ font-size:36px; }
+.pkg .voraus{ font-size:13px; color:var(--leise); margin:0 0 14px; font-style:italic; }
+.pkg .mehr{ display:block; text-align:center; margin-top:12px; font-size:14px; color:var(--tinte); text-decoration:underline; text-decoration-color:var(--tomate); text-underline-offset:4px; }
+.pakete{ max-width:1000px; margin:56px auto 0; }
+.pakete .liste{ display:grid; gap:14px; grid-template-columns:1fr; }
+@media(min-width:820px){ .pakete .liste{ grid-template-columns:1fr 1fr; } }
+.paket{ background:var(--weiss); border-radius:16px; padding:20px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.paket.top{ border:2px solid var(--tomate); }
+.paket h4{ font-size:24px; margin-bottom:2px; }
+.paket .drin{ font-size:13.5px; color:var(--leise); }
+.paket .rechts{ text-align:right; display:flex; align-items:center; gap:14px; }
+.paket .p{ font-family:'Instrument Serif',serif; font-size:34px; line-height:1; }
+.paket .statt{ font-size:13px; color:var(--leise); text-decoration:line-through; display:block; }
+.paket .btn{ padding:10px 18px; font-size:14px; }
+.unterh{ text-align:center; font-family:'Instrument Serif',serif; font-size:38px; margin:64px 0 6px; }
+/* Deep Dive */
+.deep{ max-width:1000px; margin:56px auto 0; background:var(--gelb) url(assets/streifen-gelb.svg) center/cover no-repeat; border-radius:22px; padding:16px; }
+.deep .innen{ background:var(--warmweiss); border-radius:16px; padding:34px 28px; display:grid; gap:24px; grid-template-columns:1fr; }
+@media(min-width:820px){ .deep .innen{ grid-template-columns:1.1fr 1fr; padding:44px; } }
+.deep .kicker{ text-transform:uppercase; letter-spacing:.2em; font-size:11.5px; font-weight:600; color:var(--leise); margin-bottom:10px; }
+.deep h3{ font-size:42px; margin-bottom:10px; }
+.deep .price{ font-family:'Instrument Serif',serif; font-size:44px; line-height:1; margin:14px 0 4px; }
+.deep ul{ list-style:none; }
+.deep li{ position:relative; padding-left:22px; margin-bottom:12px; }
+.deep li::before{ content:''; position:absolute; left:0; top:10px; width:10px; height:2px; background:var(--tomate); }
+/* Schritte, Über mich, FAQ */
+.steps{ display:grid; gap:28px; grid-template-columns:1fr; max-width:880px; margin:0 auto; }
+@media(min-width:680px){ .steps{ grid-template-columns:repeat(3,1fr); } }
+.step{ text-align:center; }
+.step .n{ font-family:'Instrument Serif',serif; font-style:italic; font-size:58px; color:var(--tomate); line-height:1; margin-bottom:8px; }
+.step h4{ font-size:24px; margin-bottom:6px; }
+.step p{ font-size:15px; color:var(--leise); }
+.sample{ text-align:center; }
+.sample .box{ background:var(--warmweiss); border:2px solid var(--tomate); border-radius:16px; padding:40px 28px; }
+.sample .q{ font-family:'Instrument Serif',serif; font-size:28px; line-height:1.25; }
+.sample .qs{ color:var(--leise); font-size:11px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:14px; font-weight:600; }
+.about{ display:grid; gap:34px; grid-template-columns:1fr; align-items:center; max-width:860px; margin:0 auto; }
+@media(min-width:680px){ .about{ grid-template-columns:auto 1fr; gap:48px; } }
+.about .photo{ width:190px; height:230px; border-radius:14px; object-fit:cover; border-bottom:14px solid var(--creme); box-shadow:0 0 0 6px var(--warmweiss); }
+.about h2{ font-size:40px; margin-bottom:6px; }
+.about .role{ color:var(--leise); font-size:15px; margin-bottom:16px; }
+.about p{ margin-bottom:12px; }
+.faq{ max-width:720px; margin:0 auto; }
+.faq details{ border-bottom:1px solid var(--linie); padding:18px 0; }
+.faq summary{ font-family:'Instrument Serif',serif; font-size:24px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{ content:'+'; color:var(--tomate); font-size:28px; }
+.faq details[open] summary::after{ content:'–'; }
+.faq p{ margin-top:10px; color:var(--leise); font-size:15.5px; }
+.final{ background:var(--gelb) url(assets/streifen-gelb.svg) center/cover no-repeat; text-align:center; padding:80px 0; }
+.final .wrap{ background:var(--warmweiss); border-radius:18px; padding:40px 24px; max-width:720px; }
+.final h2{ font-size:40px; margin-bottom:14px; }
+.final p{ color:var(--leise); max-width:30em; margin:0 auto 26px; font-size:17px; }
+footer{ padding:40px 0; text-align:center; font-size:14px; color:var(--leise); }
+footer .fl{ font-family:'Instrument Serif',serif; font-size:24px; color:var(--tinte); margin-bottom:6px; }
+footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
+.note{ background:var(--warmweiss); border:1px dashed var(--leise); color:var(--leise); font-size:12.5px; padding:10px 16px; border-radius:8px; text-align:center; max-width:760px; margin:0 auto; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <div class="logo">Anne Siebenkees<span>.</span></div>
+    <a href="#pakete" class="btn hd-cta">Dein Reading</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap narrow">
+    <div class="orn">✦</div>
+    <div class="eyebrow">Human Design · Persönliches Reading</div>
+    <h1>Endlich verstehen,<br>wer du <span class="script">wirklich</span> bist</h1>
+    <img class="schlaufe" src="assets/schlaufe-tomate.svg" alt="">
+    <p class="sub">Dein persönliches Human Design Reading — eine tiefe, individuelle Landkarte deiner
+    Energie. Über 50 Seiten, von Hand für dich erstellt.</p>
+    <a href="#pakete" class="btn">Dein Reading entdecken</a>
+    <div class="micro">Individuell berechnet · Liebevoll gestaltet · Als PDF zum Behalten</div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow2">Kommt dir das bekannt vor?</div>
+    <h2 class="sec">Du liebst deine Kinder. Und trotzdem ist es gerade <em>zu viel</em>.</h2>
+    <p class="lead">Du hast viel gelesen, gibst jeden Tag dein Bestes und willst vielleicht noch etwas Eigenes aufbauen.
+    Und irgendwo dazwischen bist du selbst verloren gegangen.</p>
+    <div class="pain-grid">
+      <div class="pain">Ich mache das alles für meine Kinder. Und ausgerechnet sie kriegen am wenigsten von mir.“</div>
+      <div class="pain">Warum bin ich so schnell leer, wenn andere Mütter das scheinbar locker schaffen?“</div>
+      <div class="pain">Beim ersten Kind hat alles geklappt. Beim zweiten funktioniert davon gar nichts mehr.“</div>
+      <div class="pain">Ich werde laut, obwohl ich es nicht will. Und hinterher schäme ich mich stundenlang.“</div>
+    </div>
+    <p class="turn">Du bist nicht das Problem. Du weißt nur noch nicht, wie du gebaut bist, und wie jedes deiner Kinder gebaut ist.</p>
+  </div>
+</section>
+
+<!-- WHAT IS HD -->
+<section class="pad sec-sand">
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <div class="eyebrow2" style="text-align:left">Was ist Human Design?</div>
+        <h2>Deine innere Bauanleitung — aus dem Moment deiner Geburt</h2>
+        <p>Human Design ist eine Landkarte, errechnet aus deinem genauen Geburtsdatum, deiner
+        Geburtszeit und deinem Geburtsort. Sie beschreibt, wie deine Energie angelegt ist: wie du am
+        besten <strong>Entscheidungen triffst</strong>, wo deine <strong>Kraft</strong> herkommt, wo du
+        <strong>feinfühlig</strong> bist und wo dein ganz <strong>eigener Beitrag</strong> liegt.</p>
+        <p>Das Schöne daran: Es geht nicht darum, jemand anderes zu werden — sondern darum,
+        <strong>noch mehr du selbst</strong> zu werden. Vieles wirst du beim Lesen längst spüren und
+        endlich Worte dafür finden.</p>
+      </div>
+      <div>
+        <div class="sample">
+          <div class="box">
+            <div class="qs">Was sich verändern kann</div>
+            <div class="q">„Heute glaubst du es vielleicht noch nicht: wie ruhig es bei euch zu Hause werden kann, wenn jeder weiß, wie der andere gebaut ist und was er braucht.“</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE -->
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow2">Was in deinem Reading steckt</div>
+    <h2 class="sec">Ein echter Deep Dive — keine Stichworte</h2>
+    <p class="lead">Jedes Reading wird individuell für dich berechnet und ausgearbeitet. Tiefgehend,
+    praxisnah und liebevoll gestaltet — zum immer wieder Nachlesen.</p>
+    <div class="inside-grid">
+      <div class="feat"><div class="ic">✦</div><div><h4>Dein Typ & deine Strategie</h4><p>Wie deine Energie wirkt und wie du sie am besten einsetzt.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Deine innere Autorität</h4><p>Wie du Entscheidungen triffst, die sich wirklich stimmig anfühlen.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Dein Profil & Lebensthema</h4><p>Die Rolle, in der du dich am meisten zu Hause fühlst.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Deine Zentren, Kanäle & Gaben</h4><p>Deine Stärken, deine Weisheit und deine angeborenen Talente.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Dein Schatten & deine Konditionierung</h4><p>Was nicht zu dir gehört — und wie du es loslässt.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Im Alltag, Beruf & in Beziehung</h4><p>Wie du dein Design ganz praktisch lebst, Tag für Tag.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Dein Körper</h4><p>Ernährung, Bewegung & Schlaf — passend zu deinem Design.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Deine Numerologie</h4><p>Lebenszahl & Lebensphasen als zweite Landkarte über dich.</p></div></div>
+      <div class="feat"><div class="ic">✦</div><div><h4>Deine Heilsteine</h4><p>Welche Steine zu deinem Design passen und dich im Alltag begleiten können.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="pad sec-sand" id="pakete">
+  <div class="wrap">
+    <div class="eyebrow2">Deine Readings</div>
+    <h2 class="sec">Wähle dein Reading</h2>
+    <p class="lead">Für dich selbst, für dein Kind oder für eure ganze Familie — individuell berechnet
+    und von Hand erstellt.</p>
+    <div class="pkgs">
+      <div class="pkg">
+        <h3>Kinder-Reading</h3>
+        <div class="ptag">Dein Kind wirklich verstehen</div>
+        <div class="price">99 €</div>
+        <div class="voraus">ab dem 2. Kind 79 €</div>
+        <div class="pages">ab 0 Jahren bis Teenager</div>
+        <ul>
+          <li>Für Eltern geschrieben, über dein Kind</li>
+          <li>Wie dein Kind gebaut ist und was es braucht</li>
+          <li>Konkrete Begleit-Ideen für euren Alltag</li>
+          <li>Inkl. Numerologie und passende Heilsteine deines Kindes</li>
+        </ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136464974169:1" class="btn outline">Reading sichern</a>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136465072473:1" class="mehr">Weiteres Kind für 79 € dazu</a>
+      </div>
+      <div class="pkg feature">
+        <div class="tag">Der Anfang</div>
+        <h3>Reading für dich</h3>
+        <div class="ptag">Für Erwachsene · der große Deep Dive</div>
+        <div class="price">149 €</div>
+        <div class="pages">über 50 Seiten</div>
+        <ul>
+          <li>Wie du gebaut bist und was dich leer macht</li>
+          <li>Typ, Autorität, Profil, Zentren und Kanäle</li>
+          <li>Übungen und kleine Schritte für den Alltag</li>
+          <li>Inkl. Numerologie und passende Heilsteine</li>
+        </ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136452391257:1" class="btn">Reading sichern</a>
+      </div>
+      <div class="pkg">
+        <h3>Familien-Reading</h3>
+        <div class="ptag">Euer Zusammenspiel verstehen</div>
+        <div class="price">+ 59 €</div>
+        <div class="voraus">baut auf den Einzelreadings von euch allen auf</div>
+        <ul>
+          <li>Alle Readings eurer Familie nebeneinander</li>
+          <li>Wo es bei euch reibt und wo ihr euch Kraft gebt</li>
+          <li>Wer was braucht, damit ihr zusammenwachst</li>
+        </ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136465170777:1" class="btn outline">Familien-Reading dazu</a>
+      </div>
+    </div>
+
+
+    <div class="pakete">
+      <div class="unterh" style="margin-top:0">Für die ganze Familie</div>
+      <p class="lead" style="font-size:15px;">Alle Readings auf einmal, günstiger als einzeln. Ab zwei Kindern ist das Familien-Reading schon drin.</p>
+      <div class="liste">
+        <div class="paket"><div><h4>Mama + 1 Kind</h4><div class="drin">Reading für dich · Kinder-Reading</div></div><div class="rechts"><div><span class="statt">248 €</span><span class="p">229 €</span></div><a href="https://siebenkaesehoch.myshopify.com/cart/60136465891673:1" class="btn">Paket sichern</a></div></div>
+        <div class="paket top"><div><h4>Mama + 2 Kinder</h4><div class="drin">Reading für dich · 2 Kinder-Readings · Familien-Reading</div></div><div class="rechts"><div><span class="statt">386 €</span><span class="p">349 €</span></div><a href="https://siebenkaesehoch.myshopify.com/cart/60136466055513:1" class="btn">Paket sichern</a></div></div>
+        <div class="paket"><div><h4>Mama + 3 Kinder</h4><div class="drin">Reading für dich · 3 Kinder-Readings · Familien-Reading</div></div><div class="rechts"><div><span class="statt">465 €</span><span class="p">399 €</span></div><a href="https://siebenkaesehoch.myshopify.com/cart/60136466121049:1" class="btn">Paket sichern</a></div></div>
+        <div class="paket"><div><h4>2 Erwachsene + 1 Kind</h4><div class="drin">2 Readings für Erwachsene · Kinder-Reading · Familien-Reading</div></div><div class="rechts"><div><span class="statt">456 €</span><span class="p">409 €</span></div><a href="https://siebenkaesehoch.myshopify.com/cart/60136466186585:1" class="btn">Paket sichern</a></div></div>
+        <div class="paket"><div><h4>2 Erwachsene + 2 Kinder</h4><div class="drin">2 Readings für Erwachsene · 2 Kinder-Readings · Familien-Reading</div></div><div class="rechts"><div><span class="statt">535 €</span><span class="p">479 €</span></div><a href="https://siebenkaesehoch.myshopify.com/cart/60136466317657:1" class="btn">Paket sichern</a></div></div>
+      </div>
+    </div>
+
+    <div class="unterh">Tiefer gehen</div>
+    <p class="lead" style="font-size:15px;">Diese Readings bauen auf einem Reading für dich oder für dein Kind auf.</p>
+    <div class="pkgs klein">
+      <div class="pkg mini">
+        <h3>Ernährung für dich</h3>
+        <div class="price">69 €</div>
+        <div class="voraus">baut auf deinem Reading auf</div>
+        <ul><li>Welche Ernährung und Bewegung zu deinem Körper passt</li></ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136465301849:1" class="btn outline">Dazu buchen</a>
+      </div>
+      <div class="pkg mini">
+        <h3>Ernährung für dein Kind</h3>
+        <div class="price">49 €</div>
+        <div class="voraus">baut auf dem Kinder-Reading auf</div>
+        <ul><li>Wie du dein Kind passend zu seiner Bauart ernährst</li></ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136465400153:1" class="btn outline">Dazu buchen</a>
+      </div>
+      <div class="pkg mini">
+        <h3>Lern-Guide Kind</h3>
+        <div class="price">39 €</div>
+        <div class="voraus">baut auf dem Kinder-Reading auf</div>
+        <ul><li>Wie dein Kind am besten lernt, egal ob Schule, Homeschooling oder Freilernen</li></ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136465695065:1" class="btn outline">Dazu buchen</a>
+      </div>
+      <div class="pkg mini">
+        <h3>Schlaf-Guide Kind</h3>
+        <div class="price">15 €</div>
+        <div class="voraus">baut auf dem Kinder-Reading auf</div>
+        <ul><li>Was dein Kind zum Einschlafen und Durchschlafen braucht</li></ul>
+        <a href="https://siebenkaesehoch.myshopify.com/cart/60136465858905:1" class="btn outline">Dazu buchen</a>
+      </div>
+    </div>
+    <div class="deep">
+      <div class="innen">
+        <div>
+          <div class="kicker">Deep Dive · zum Dazubuchen</div>
+          <h3>Deine <em>Lebensaufgabe</em></h3>
+          <p>Wofür bist du eigentlich hier? Im Deep Dive gehe ich mit dir in die Tiefe deines Lebensthemas, also des Inkarnationskreuzes in deinem Chart. Zum Lesen, Nachspüren und Aufschreiben.</p>
+          <div class="price">79 €</div>
+          <div class="voraus">baut auf deinem Reading für dich auf</div>
+          <a href="https://siebenkaesehoch.myshopify.com/cart/60136465563993:1" class="btn">Deep Dive dazubuchen</a>
+        </div>
+        <ul>
+          <li>Die vier Tore deines Lebensthemas, jedes einzeln erklärt</li>
+          <li>Licht und Schatten: wo deine Aufgabe dich trägt und wo sie dich ausbremst</li>
+          <li>Dein Lebensthema im Zusammenhang mit deinem ganzen Chart</li>
+          <li>Zu jedem Tor Fragen zum Schreiben und Nachspüren</li>
+          <li>So geschrieben, dass du ohne Vorwissen mitkommst</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="pad" id="bestellen">
+  <div class="wrap">
+    <div class="eyebrow2">So einfach geht's</div>
+    <h2 class="sec">In drei Schritten zu deinem Reading</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Reading wählen & buchen</h4><p>Such dir dein Reading aus und schließe die Bestellung bequem ab.</p></div>
+      <div class="step"><div class="n">2</div><h4>Geburtsdaten angeben</h4><p>Du erhältst ein kurzes Formular für Geburtsdatum, -zeit & -ort.</p></div>
+      <div class="step"><div class="n">3</div><h4>Dein PDF erhalten</h4><p>Ich erstelle dein Reading von Hand und sende es dir als PDF — innerhalb weniger Tage.</p></div>
+    </div>
+    <div style="text-align:center; margin-top:44px;">
+      <a href="#pakete" class="btn">Jetzt mein Reading sichern</a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="pad sec-sand">
+  <div class="wrap">
+    <div class="about">
+      <img class="photo" src="anne-avatar.jpg" alt="Anne Siebenkees">
+      <div>
+        <div class="eyebrow2" style="text-align:left">Über mich</div>
+        <h2>Hi, ich bin Anne</h2>
+        <div class="role">Mentorin · Unternehmerin · Mama</div>
+        <p>Human Design hat meinen Blick auf mich selbst und die Menschen um mich herum tief verändert —
+        wie viel Druck es herausnimmt und wie viel Klarheit es schenkt, wenn wir verstehen, wie wir
+        wirklich gestrickt sind.</p>
+        <p>Jedes Reading erstelle ich mit viel Sorgfalt und Liebe individuell für dich. Mein Wunsch ist,
+        dass du dich danach nicht „analysiert", sondern <strong>gesehen</strong> fühlst — und ermutigt,
+        deinen eigenen Weg klarer zu gehen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow2">Häufige Fragen</div>
+    <h2 class="sec">Gut zu wissen</h2>
+    <div class="faq">
+      <details open><summary>Was brauchst du von mir?</summary><p>Dein genaues Geburtsdatum, deine Geburtszeit (möglichst exakt) und deinen Geburtsort. Nach der Buchung bekommst du dafür ein kurzes Formular. Für Kinder- und Familien-Readings entsprechend die Daten aller Personen.</p></details>
+      <details><summary>Wie schnell bekomme ich mein Reading?</summary><p>Da jedes Reading individuell von Hand erstellt wird, erhältst du es innerhalb weniger Tage nach Eingang deiner Daten als PDF per E-Mail.</p></details>
+      <details><summary>Brauche ich Vorwissen über Human Design?</summary><p>Nein. Dein Reading ist so geschrieben, dass du alles ohne Vorwissen verstehst — Schritt für Schritt, in klarer, warmer Sprache.</p></details>
+      <details><summary>Ist das eine Beratung oder Therapie?</summary><p>Nein. Human Design ist ein Werkzeug der Selbstreflexion und liebevollen Orientierung. Es ersetzt keine medizinische, psychologische oder therapeutische Beratung.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap narrow">
+    <h2>Lerne dich selbst auf einer neuen Ebene kennen</h2>
+    <p>Dein persönliches Human Design Reading — eine Landkarte zurück zu dir. Zum immer wieder Nachlesen.</p>
+    <a href="#pakete" class="btn">Dein Reading sichern</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fl">Anne Siebenkees</div>
+    <div><a href="https://instagram.com/annesiebenkees" target="_blank" rel="noopener">@annesiebenkees</a></div>
+    <div class="legal">
+      © Anne Siebenkees · <a href="#">Impressum</a> · <a href="#">Datenschutz</a> · <a href="#">AGB</a> · <a href="#">Widerruf</a><br>
+      Human Design ist ein Werkzeug der Selbstreflexion. Es ersetzt keine medizinische, psychologische oder therapeutische Beratung.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

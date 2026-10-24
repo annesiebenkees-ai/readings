@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Geburtsdaten für dein Reading — Anne Siebenkees</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
+:root{ --warmweiss:#faf6f0; --creme:#efe2cc; --creme2:#f3e6d2; --gelb:#ffb627; --tomate:#ff4a3d; --tinte:#2e2723; --leise:#6f625a; --linie:#e6d9c5; --weiss:#fffdf9; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{ font-family:'Instrument Sans',system-ui,sans-serif; color:var(--tinte); background:var(--warmweiss) url(assets/streifen-creme.svg) center top/cover fixed no-repeat; line-height:1.6; font-size:16.5px; }
+h1,h2,h3{ font-family:'Instrument Serif',Georgia,serif; font-weight:400; line-height:1.1; }
+em{ font-family:'Instrument Serif',serif; font-style:italic; color:var(--tomate); }
+.blatt{ max-width:720px; margin:32px auto 48px; background:var(--warmweiss); border-radius:20px; padding:34px 22px; }
+@media(min-width:680px){ .blatt{ padding:44px 48px; margin-top:56px; } }
+.logo{ font-family:'Instrument Serif',serif; font-size:22px; margin-bottom:26px; }
+.logo span{ color:var(--tomate); }
+h1{ font-size:40px; margin-bottom:6px; }
+@media(min-width:680px){ h1{ font-size:52px; } }
+.schlaufe{ width:180px; display:block; margin:2px 0 16px; }
+.intro{ color:var(--leise); margin-bottom:26px; }
+label{ display:block; font-weight:600; font-size:14px; margin:16px 0 6px; }
+.hilfe{ font-weight:400; color:var(--leise); font-size:13px; }
+input,select,textarea{ width:100%; font:inherit; color:var(--tinte); background:var(--weiss); border:1.5px solid var(--linie); border-radius:12px; padding:12px 14px; }
+input:focus,select:focus,textarea:focus{ outline:none; border-color:var(--gelb); }
+.reihe{ display:grid; gap:0 14px; grid-template-columns:1fr; }
+@media(min-width:620px){ .reihe{ grid-template-columns:1fr 1fr; } }
+.person{ background:var(--creme2); border-radius:16px; padding:6px 18px 20px; margin-top:20px; position:relative; }
+.person h3{ font-size:26px; margin:14px 0 0; }
+.weg{ position:absolute; top:16px; right:16px; background:none; border:none; color:var(--leise); font:inherit; font-size:14px; text-decoration:underline; cursor:pointer; }
+.haken{ display:flex; gap:10px; align-items:flex-start; font-weight:400; font-size:14px; margin-top:10px; }
+.haken input{ width:auto; margin-top:4px; }
+.btn{ display:inline-block; background:var(--gelb); color:var(--tinte); padding:14px 28px; border-radius:40px; font-weight:600; font-size:15.5px; border:none; cursor:pointer; text-decoration:none; }
+.btn.leise{ background:transparent; border:1.5px solid var(--tinte); }
+.knoepfe{ display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+.hinweis{ background:var(--weiss); border-left:3px solid var(--tomate); border-radius:8px; padding:14px 16px; margin-top:22px; font-size:14.5px; color:var(--leise); display:none; }
+.hinweis.zeigen{ display:block; }
+.klein{ font-size:13px; color:var(--leise); margin-top:24px; }
+.fehler{ color:var(--tomate); font-size:14px; margin-top:12px; min-height:1em; }
+</style>
+</head>
+<body>
+<main class="blatt">
+  <div class="logo">Anne Siebenkees<span>.</span></div>
+  <h1>Deine <em>Geburtsdaten</em></h1>
+  <img class="schlaufe" src="assets/schlaufe-tomate.svg" alt="">
+  <p class="intro">Danke für deine Buchung. Damit ich dein Reading schreiben kann, brauche ich von jeder Person, für die du gebucht hast, das Geburtsdatum, die Uhrzeit und den Ort. Je genauer die Uhrzeit, desto genauer das Reading.</p>
+
+  <form id="formular" novalidate>
+    <div class="reihe">
+      <div>
+        <label for="bestellung">Bestellnummer <span class="hilfe">(aus deiner Bestellbestätigung)</span></label>
+        <input id="bestellung" name="bestellung" placeholder="#1234" required>
+      </div>
+      <div>
+        <label for="email">Deine E-Mail-Adresse <span class="hilfe">(dahin schicke ich das PDF)</span></label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+      </div>
+    </div>
+
+    <div id="personen"></div>
+    <div class="knoepfe" style="margin-top:16px">
+      <button type="button" class="btn leise" id="dazu">+ Weitere Person</button>
+    </div>
+
+    <label for="anmerkung">Möchtest du mir noch etwas mitgeben? <span class="hilfe">(freiwillig, z. B. was dich gerade beschäftigt)</span></label>
+    <textarea id="anmerkung" name="anmerkung" rows="4"></textarea>
+
+    <label class="haken"><input type="checkbox" id="einwilligung" required> <span>Ich bin damit einverstanden, dass Anne Siebenkees diese Daten nur für die Erstellung meiner Readings verwendet. Bei Kindern: Ich bin sorgeberechtigt.</span></label>
+
+    <div class="fehler" id="fehler"></div>
+    <div class="knoepfe">
+      <button type="submit" class="btn">Daten an Anne senden</button>
+      <button type="button" class="btn leise" id="kopieren">Text kopieren</button>
+    </div>
+    <div class="hinweis" id="hinweis">Dein Mailprogramm öffnet sich gleich mit einer fertigen Nachricht an mich. Du musst nur noch auf Senden drücken. Falls sich nichts öffnet: Tippe auf „Text kopieren" und schick mir den Text an <strong id="adresse-text"></strong>.</div>
+  </form>
+
+  <p class="klein">Die Daten werden nicht auf dieser Seite gespeichert. Sie gehen nur per Mail an mich und werden ausschließlich für dein Reading genutzt. Human Design ist ein Werkzeug der Selbstreflexion und ersetzt keine medizinische, psychologische oder therapeutische Beratung.</p>
+</main>
+
+<script>
+// Empfangsadresse für die Geburtsdaten (Anne kann sie hier ändern)
+const ADRESSE = "annesiebenkees@icloud.com";
+
+const personen = document.getElementById('personen');
+let zaehler = 0;
+
+function personAnlegen(rolle){
+  zaehler++;
+  const n = zaehler;
+  const el = document.createElement('div');
+  el.className = 'person';
+  el.innerHTML = `
+    <h3>Person ${n}</h3>
+    ${n > 1 ? '<button type="button" class="weg">entfernen</button>' : ''}
+    <div class="reihe">
+      <div><label>Vorname</label><input class="f-name" required></div>
+      <div><label>Wer ist das?</label>
+        <select class="f-rolle">
+          <option>ich selbst</option><option>mein Kind</option><option>mein Partner / meine Partnerin</option><option>andere Person</option>
+        </select></div>
+      <div><label>Geburtsdatum</label><input class="f-datum" type="date" required></div>
+      <div><label>Geburtszeit <span class="hilfe">(steht oft in der Geburtsurkunde)</span></label><input class="f-zeit" type="time"></div>
+    </div>
+    <label class="haken"><input type="checkbox" class="f-unsicher"> <span>Ich kenne die Uhrzeit nicht genau</span></label>
+    <label>Geburtsort <span class="hilfe">(Ort und Land)</span></label><input class="f-ort" placeholder="z. B. Plauen, Deutschland" required>`;
+  if (rolle) el.querySelector('.f-rolle').value = rolle;
+  const weg = el.querySelector('.weg');
+  if (weg) weg.onclick = () => el.remove();
+  personen.appendChild(el);
+}
+personAnlegen('ich selbst');
+document.getElementById('dazu').onclick = () => personAnlegen('mein Kind');
+
+// Bestellnummer aus dem Link der Bestellbestätigung übernehmen
+const q = new URLSearchParams(location.search);
+if (q.get('bestellung')) document.getElementById('bestellung').value = q.get('bestellung');
+document.getElementById('adresse-text').textContent = ADRESSE;
+
+function textBauen(){
+  const fehler = [];
+  const b = document.getElementById('bestellung').value.trim();
+  const m = document.getElementById('email').value.trim();
+  if (!b) fehler.push('Bestellnummer');
+  if (!m || !m.includes('@')) fehler.push('E-Mail-Adresse');
+  const zeilen = [`Bestellnummer: ${b}`, `E-Mail: ${m}`, ''];
+  [...personen.children].forEach((p, i) => {
+    const name = p.querySelector('.f-name').value.trim();
+    const datum = p.querySelector('.f-datum').value;
+    const zeit = p.querySelector('.f-zeit').value;
+    const unsicher = p.querySelector('.f-unsicher').checked;
+    const ort = p.querySelector('.f-ort').value.trim();
+    if (!name || !datum || !ort || (!zeit && !unsicher)) fehler.push(`Angaben bei Person ${i+1}`);
+    const d = datum ? datum.split('-').reverse().join('.') : '';
+    zeilen.push(`Person ${i+1}: ${name} (${p.querySelector('.f-rolle').value})`,
+      `Geburtsdatum: ${d}`,
+      `Geburtszeit: ${zeit ? zeit + ' Uhr' : '—'}${unsicher ? ' (nicht genau bekannt)' : ''}`,
+      `Geburtsort: ${ort}`, '');
+  });
+  const a = document.getElementById('anmerkung').value.trim();
+  if (a) zeilen.push('Anmerkung:', a, '');
+  if (!document.getElementById('einwilligung').checked) fehler.push('Einverständnis');
+  return { text: zeilen.join('\n'), fehler, b };
+}
+
+document.getElementById('formular').onsubmit = (e) => {
+  e.preventDefault();
+  const { text, fehler, b } = textBauen();
+  const f = document.getElementById('fehler');
+  if (fehler.length){ f.textContent = 'Bitte noch ergänzen: ' + [...new Set(fehler)].join(', ') + '.'; return; }
+  f.textContent = '';
+  document.getElementById('hinweis').classList.add('zeigen');
+  location.href = `mailto:${ADRESSE}?subject=${encodeURIComponent('Geburtsdaten zur Bestellung ' + b)}&body=${encodeURIComponent(text)}`;
+};
+
+document.getElementById('kopieren').onclick = async () => {
+  const { text } = textBauen();
+  try { await navigator.clipboard.writeText(text); document.getElementById('kopieren').textContent = 'Kopiert ✓'; }
+  catch(_) { alert(text); }
+};
+</script>
+</body>
+</html>
