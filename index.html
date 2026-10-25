@@ -438,7 +438,7 @@ body.mit-auswahl{ padding-bottom:110px; }
 <div class="auswahl" id="auswahl" aria-live="polite">
   <div class="kopf">
     <div><div class="summe" id="a-summe">0 €</div><button class="zeigen" id="a-zeigen" type="button">Deine Auswahl ansehen</button></div>
-    <a class="btn" id="a-kasse" href="#">Zur Kasse</a>
+    <a class="btn" id="a-kasse" href="#">Zum Warenkorb</a>
   </div>
   <ul id="a-liste"></ul>
 </div>
@@ -474,7 +474,7 @@ body.mit-auswahl{ padding-bottom:110px; }
       plus.onclick=()=>{ if(id===KIND) a[GESCHW]=(a[GESCHW]||0)+1; else a[id]++; zeichnen(); };
       ul.appendChild(li); });
     document.getElementById('a-summe').textContent = euro(s);
-    document.getElementById('a-kasse').href = SHOP + ids.map(id=>id+':'+a[id]).join(',');
+    document.getElementById('a-kasse').href = 'https://pippin-welt.de/cart/' + ids.map(id=>id+':'+a[id]).join(',') + '?storefront=true';
   }
   document.querySelectorAll('a[href^="'+SHOP+'"]').forEach(link=>{
     const id = link.getAttribute('href').slice(SHOP.length).split(':')[0];
