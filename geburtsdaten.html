@@ -109,8 +109,19 @@ function personAnlegen(rolle){
       <div><label>Geburtszeit <span class="hilfe">(steht oft in der Geburtsurkunde)</span></label><input class="f-zeit" type="time"></div>
     </div>
     <label class="haken"><input type="checkbox" class="f-unsicher"> <span>Ich kenne die Uhrzeit nicht genau</span></label>
-    <label>Geburtsort <span class="hilfe">(Ort und Land)</span></label><input class="f-ort" placeholder="z. B. Plauen, Deutschland" required>`;
+    <label>Geburtsort <span class="hilfe">(Ort und Land)</span></label><input class="f-ort" placeholder="z. B. Plauen, Deutschland" required>
+    <label>Was hast du für diese Person gebucht?</label>
+    <div class="f-was"></div>`;
   if (rolle) el.querySelector('.f-rolle').value = rolle;
+  const was = el.querySelector('.f-was');
+  const sel = el.querySelector('.f-rolle');
+  const fuellen = () => {
+    const kind = sel.value === 'mein Kind';
+    const liste = kind ? ['Kinder-Reading','Ernährung fürs Kind','Lern-Guide','Schlaf-Guide']
+                       : ['Reading für Erwachsene','Ernährung','Deep Dive Lebensaufgabe mit Gespräch'];
+    was.innerHTML = liste.map(x => `<label class="haken" style="margin-top:6px"><input type="checkbox" value="${x}"${x.startsWith('Kinder-Reading')||x.startsWith('Reading für')?' checked':''}> <span>${x}</span></label>`).join('');
+  };
+  sel.addEventListener('change', fuellen); fuellen();
   const weg = el.querySelector('.weg');
   if (weg) weg.onclick = () => el.remove();
   personen.appendChild(el);
@@ -141,7 +152,8 @@ function textBauen(){
     zeilen.push(`Person ${i+1}: ${name} (${p.querySelector('.f-rolle').value})`,
       `Geburtsdatum: ${d}`,
       `Geburtszeit: ${zeit ? zeit + ' Uhr' : '—'}${unsicher ? ' (nicht genau bekannt)' : ''}`,
-      `Geburtsort: ${ort}`, '');
+      `Geburtsort: ${ort}`,
+      `Gebucht: ${[...p.querySelectorAll('.f-was input:checked')].map(x=>x.value).join(', ') || '—'}`, '');
   });
   const a = document.getElementById('anmerkung').value.trim();
   if (a) zeilen.push('Anmerkung:', a, '');

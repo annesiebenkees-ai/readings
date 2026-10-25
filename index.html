@@ -145,6 +145,21 @@ footer{ padding:40px 0; text-align:center; font-size:14px; color:var(--leise); }
 footer .fl{ font-family:'Instrument Serif',serif; font-size:24px; color:var(--tinte); margin-bottom:6px; }
 footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
 .note{ background:var(--warmweiss); border:1px dashed var(--leise); color:var(--leise); font-size:12.5px; padding:10px 16px; border-radius:8px; text-align:center; max-width:760px; margin:0 auto; }
+
+/* Auswahl */
+.auswahl{ position:fixed; left:12px; right:12px; bottom:12px; z-index:60; max-width:720px; margin:0 auto; background:var(--weiss); border:2px solid var(--tinte); border-radius:18px; box-shadow:0 14px 40px rgba(46,39,35,.18); padding:12px 14px; display:none; }
+.auswahl.offen{ display:block; }
+.auswahl .kopf{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.auswahl .summe{ font-family:'Instrument Serif',serif; font-size:26px; }
+.auswahl .zeigen{ background:none; border:none; font:inherit; font-size:14px; text-decoration:underline; cursor:pointer; color:var(--tinte); }
+.auswahl ul{ list-style:none; margin:10px 0 6px; max-height:40vh; overflow:auto; display:none; }
+.auswahl.liste ul{ display:block; }
+.auswahl li{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:7px 0; border-top:1px solid var(--linie); font-size:14.5px; }
+.auswahl .mz{ display:flex; align-items:center; gap:8px; white-space:nowrap; }
+.auswahl .mz button{ width:28px; height:28px; border-radius:50%; border:1.5px solid var(--tinte); background:none; font-size:16px; cursor:pointer; line-height:1; }
+.hinzu{ position:fixed; left:50%; top:78px; transform:translateX(-50%); background:var(--tinte); color:var(--warmweiss); padding:9px 16px; border-radius:20px; font-size:14px; z-index:61; opacity:0; transition:opacity .25s; pointer-events:none; }
+.hinzu.da{ opacity:1; }
+body.mit-auswahl{ padding-bottom:110px; }
 </style>
 </head>
 <body>
@@ -196,13 +211,13 @@ footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
         <h2>Eine Landkarte von dir, aus dem Moment deiner Geburt</h2>
         <p>Vielleicht hast du dich schon oft gefragt: Warum bin ich so, wie ich bin? Warum reagiert mein Kind ganz anders als ich? Und warum fühlt sich manches so schwer an, obwohl es bei anderen ganz leicht aussieht?</p>
         <p>Human Design gibt darauf keine Regeln, sondern Antworten über dich. Aus deinem Geburtsdatum, der Uhrzeit und dem Ort entsteht deine Körpergrafik. Sie zeigt, wo deine Energie beständig fließt und wo du offen bist für das, was von außen kommt, wie du <strong>gute Entscheidungen</strong> triffst und woran du merkst, dass du <strong>gegen dich arbeitest</strong>.</p>
-        <p>Du musst dafür nichts glauben und nichts auswendig lernen. Die meisten Frauen erkennen sich beim Lesen einfach wieder. Es geht nicht darum, an dir herumzuschrauben, sondern dich daran zu erinnern, wer du eigentlich bist.</p>
+        <p>Du musst dafür nichts glauben und nichts auswendig lernen. Die meisten erkennen sich beim Lesen einfach wieder. Es geht nicht darum, an dir herumzuschrauben, sondern dich daran zu erinnern, wer du eigentlich bist.</p>
       </div>
       <div>
         <div class="sample">
           <div class="box">
             <div class="qs">Was sich verändern kann</div>
-            <div class="q">„Heute glaubst du es vielleicht noch nicht: wie ruhig es bei euch zu Hause werden kann, wenn jeder weiß, wie der andere gebaut ist und was er braucht.“</div>
+            <div class="q">„Heute glaubst du es vielleicht noch nicht: wie harmonisch es bei euch zu Hause werden kann, wenn jeder weiß, wie der andere gebaut ist und was er braucht.“</div>
           </div>
         </div>
       </div>
@@ -295,7 +310,7 @@ footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
     </div>
 
     <div class="unterh">Tiefer gehen</div>
-    <p class="lead" style="font-size:15px;">Diese Readings bauen auf einem Reading für dich oder für dein Kind auf.</p>
+    <p class="lead" style="font-size:15px;">Diese Readings bauen auf einem Reading für dich oder für dein Kind auf. Hast du mehrere Kinder, füg den Guide einfach für jedes Kind hinzu. Wer welchen bekommt, trägst du nach dem Kauf bei den Geburtsdaten ein.</p>
     <div class="pkgs klein">
       <div class="pkg mini">
         <h3>Ernährung für dich</h3>
@@ -332,8 +347,8 @@ footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
           <div class="kicker">Deep Dive · mit Gespräch</div>
           <h3>Deine <em>Lebensaufgabe</em></h3>
           <p>Das ist das Reading, mit dem du wirklich herausfindest, wofür du hier bist. Wir gehen in die Tiefe deines Lebensthemas, des Inkarnationskreuzes in deinem Chart. Und danach sprechen wir darüber, persönlich, eins zu eins.</p>
-          <div class="price">79 €</div>
-          <div class="voraus">baut auf deinem Reading für dich auf</div>
+          <div class="price">149 €</div>
+          <div class="voraus">baut auf deinem Reading für dich auf · Gespräch 45 Minuten</div>
           <a href="https://siebenkaesehoch.myshopify.com/cart/60136465563993:1" class="btn">Deep Dive dazubuchen</a>
         </div>
         <ul>
@@ -341,7 +356,7 @@ footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
           <li>Licht und Schatten: wo deine Aufgabe dich trägt und wo sie dich ausbremst</li>
           <li>Dein Lebensthema im Zusammenhang mit deinem ganzen Chart</li>
           <li>Zu jedem Tor Fragen zum Schreiben und Nachspüren</li>
-          <li><strong>Eine persönliche Auswertung mit mir per Video:</strong> Wir schauen gemeinsam, was das für dein Leben heißt und wie dein nächster Schritt aussieht</li>
+          <li><strong>45 Minuten persönliche Auswertung mit mir per Video:</strong> Wir schauen gemeinsam, was das für dein Leben heißt und wie dein nächster Schritt aussieht</li>
         </ul>
       </div>
     </div>
@@ -419,5 +434,57 @@ footer .legal{ margin-top:14px; font-size:12px; line-height:1.8; }
   </div>
 </footer>
 
+
+<div class="auswahl" id="auswahl" aria-live="polite">
+  <div class="kopf">
+    <div><div class="summe" id="a-summe">0 €</div><button class="zeigen" id="a-zeigen" type="button">Deine Auswahl ansehen</button></div>
+    <a class="btn" id="a-kasse" href="#">Zur Kasse</a>
+  </div>
+  <ul id="a-liste"></ul>
+</div>
+<div class="hinzu" id="hinzu">Zur Auswahl hinzugefügt</div>
+<script>
+(function(){
+  const SHOP = "https://siebenkaesehoch.myshopify.com/cart/";
+  const P = {
+    "60136452391257":["Reading für dich",149], "60136464974169":["Kinder-Reading",99], "60136465072473":["Kinder-Reading, weiteres Kind",79],
+    "60136465170777":["Familien-Reading",59], "60136465301849":["Ernährung für dich",69], "60136465400153":["Ernährung für dein Kind",49],
+    "60136465563993":["Deep Dive Lebensaufgabe mit Gespräch",149], "60136465695065":["Lern-Guide Kind",39], "60136465858905":["Schlaf-Guide Kind",15],
+    "60136465891673":["Paket Mama + 1 Kind",229], "60136466055513":["Paket Mama + 2 Kinder",349], "60136466121049":["Paket Mama + 3 Kinder",399],
+    "60136466186585":["Paket 2 Erwachsene + 1 Kind",409], "60136466317657":["Paket 2 Erwachsene + 2 Kinder",479]
+  };
+  const KIND="60136464974169", GESCHW="60136465072473";
+  let a = {};
+  try { a = JSON.parse(localStorage.getItem('anne-auswahl')||'{}'); } catch(_) {}
+  function speichern(){ try { localStorage.setItem('anne-auswahl', JSON.stringify(a)); } catch(_) {} }
+  // erstes Kind voller Preis, jedes weitere zum Geschwisterpreis
+  function ordnen(){ const n=(a[KIND]||0)+(a[GESCHW]||0); if(n>0){ a[KIND]=1; a[GESCHW]=n-1; } if(!a[GESCHW]) delete a[GESCHW]; if(!a[KIND]) delete a[KIND]; }
+  const euro = x => x.toLocaleString('de-DE') + ' €';
+  function zeichnen(){
+    ordnen(); speichern();
+    const ids = Object.keys(a).filter(k=>a[k]>0);
+    const box = document.getElementById('auswahl');
+    box.classList.toggle('offen', ids.length>0); document.body.classList.toggle('mit-auswahl', ids.length>0);
+    let s=0; const ul=document.getElementById('a-liste'); ul.innerHTML='';
+    ids.forEach(id=>{ const [n,p]=P[id]; s+=p*a[id];
+      const li=document.createElement('li');
+      li.innerHTML = `<span>${n}</span><span class="mz"><button type="button" aria-label="weniger">−</button><span>${a[id]}</span><button type="button" aria-label="mehr">+</button><span style="min-width:62px;text-align:right">${euro(p*a[id])}</span></span>`;
+      const [minus,plus]=li.querySelectorAll('button');
+      minus.onclick=()=>{ if(id===GESCHW||id===KIND){ const n=(a[KIND]||0)+(a[GESCHW]||0)-1; a[KIND]=n>0?1:0; a[GESCHW]=Math.max(0,n-1); } else a[id]--; if(a[id]<=0) delete a[id]; zeichnen(); };
+      plus.onclick=()=>{ if(id===KIND) a[GESCHW]=(a[GESCHW]||0)+1; else a[id]++; zeichnen(); };
+      ul.appendChild(li); });
+    document.getElementById('a-summe').textContent = euro(s);
+    document.getElementById('a-kasse').href = SHOP + ids.map(id=>id+':'+a[id]).join(',');
+  }
+  document.querySelectorAll('a[href^="'+SHOP+'"]').forEach(link=>{
+    const id = link.getAttribute('href').slice(SHOP.length).split(':')[0];
+    if(!P[id]) return;
+    link.addEventListener('click', e=>{ e.preventDefault(); a[id]=(a[id]||0)+1; zeichnen();
+      const h=document.getElementById('hinzu'); h.classList.add('da'); setTimeout(()=>h.classList.remove('da'),1400); });
+  });
+  document.getElementById('a-zeigen').onclick=()=>{ const b=document.getElementById('auswahl'); b.classList.toggle('liste'); document.getElementById('a-zeigen').textContent=b.classList.contains('liste')?'Auswahl zuklappen':'Deine Auswahl ansehen'; };
+  zeichnen();
+})();
+</script>
 </body>
 </html>
