@@ -35,7 +35,8 @@ header{ position:sticky; top:0; z-index:50; background:rgba(251,244,239,.95); ba
 .hd-cta{ display:none; }
 @media(min-width:680px){ .hd-cta{ display:inline-block; } }
 /* Hero */
-.hero{ position:relative; overflow:hidden; text-align:center; padding:70px 0 80px; background:var(--warmweiss) url(assets/streifen-beere.svg) center/cover no-repeat; }
+.hero{ position:relative; overflow:hidden; text-align:center; padding:40px 0 70px; background:linear-gradient(180deg,#e8a5b1 0%,#f6dde2 55%,#fbf4ef 100%); }
+.hero-foto{ display:block; width:170px; height:170px; border-radius:50%; object-fit:cover; margin:0 auto 22px; border:6px solid #f6df98; box-shadow:0 0 0 6px #9e2f3e, 0 14px 30px rgba(158,47,62,.25); }
 .hero::after{ content:""; position:absolute; left:50%; bottom:-180px; width:560px; height:360px; transform:translateX(-50%); background:radial-gradient(closest-side, rgba(246,223,152,.5), rgba(232,165,177,.25) 55%, transparent); filter:blur(10px); pointer-events:none; }
 .hero .wrap{ position:relative; z-index:1; background:#fbf4ef; box-shadow:0 10px 40px rgba(158,47,62,.18); border-radius:18px; padding:36px 22px 32px; max-width:720px; }
 .hero .orn{ display:none; }
@@ -172,7 +173,7 @@ body.mit-auswahl{ padding-bottom:110px; }
 <!-- HERO -->
 <section class="hero">
   <div class="wrap narrow">
-    <div class="orn">✦</div>
+    <img class="hero-foto" src="anne-avatar.jpg?v=2" alt="Anne Siebenkees">
     <div class="eyebrow">Human Design · Persönliches Reading</div>
     <h1>Endlich verstehen,<br>wer du <span class="script">wirklich</span> bist</h1>
     <img class="schlaufe" src="assets/schlaufe-tomate.svg" alt="">
@@ -382,7 +383,7 @@ body.mit-auswahl{ padding-bottom:110px; }
 <section class="pad sec-sand">
   <div class="wrap">
     <div class="about">
-      <img class="photo" src="anne-avatar.jpg" alt="Anne Siebenkees">
+      <img class="photo" src="anne-avatar.jpg?v=2" alt="Anne Siebenkees">
       <div>
         <div class="eyebrow2" style="text-align:left">Über mich</div>
         <h2>Hi, ich bin Anne</h2>
